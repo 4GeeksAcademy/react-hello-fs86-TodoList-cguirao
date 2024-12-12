@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import '../../styles/home.css';
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  const [tareas, setTareas] = useState([]); 
+
+  const nuevaTarea = (e) => {
+    if (e.key === 'Enter') {
+      setTareas([...tareas, e.target.value]);
+      e.target.value = ""; 
+    }
+  };
+
+  const eliminarAccion=(index)=>{
+	setTareas(tareas.filter((_,i)=>i!==index));
+  }
+  return (
+    <div className="todoList">
+      <h1>TODO LIST</h1>
+      <input
+        type="text"
+        placeholder="What needs to be done?"
+        onKeyDown={nuevaTarea}
+      />
+      <ul className="todoList__group">
+        {
+          tareas.map((tarea, index) => {
+            return (
+              <li className="todoList__group-item " key={index}>
+                {tarea}
+                <button className="eliminar"  onClick={() => eliminarAccion(index)}>X</button>
+              </li>
+            );
+          })
+        }
+      </ul>
+	  <p className="tareasPendientes">{tareas.length > 0 ? `${tareas.length} tarea${tareas.length > 1 ? 's' : ''} pendiente` : 'No hay tareas pendientes'}</p>
+
+    </div>
+  );
 };
 
 export default Home;

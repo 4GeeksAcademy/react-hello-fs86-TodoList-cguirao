@@ -1,0 +1,41 @@
+#app{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.todoList {
+    width: 30vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    justify-content: center;
+    border: 1px solid black;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 3rem;
+  }
+  
+  .todoList__group-item {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    margin: 5px 10px 0px 0px;
+  }
+  
+  .eliminar {
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+   visibility: hidden;
+  }
+
+  .todoList__group-item:hover .eliminar {
+    visibility: visible; 
+    background-color: darkred;  
+  }
+  
+.tareasPendientes{
+    margin-left: 1rem;
+}
